@@ -8,7 +8,7 @@ def convert_n_to_m(x, n, m):
     char_value_map = dict(zip(chars, values))
 
     # check if the number is string or int
-    if not isinstance(x, str) and not isinstance(x, int):
+    if not isinstance(x, (str, int)):
         return False
 
     # check if each digit is in the char_value_map and if it less than base
