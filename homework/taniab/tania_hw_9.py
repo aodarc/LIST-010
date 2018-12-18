@@ -14,8 +14,7 @@ def tag(name):
             result = func(*args, **kwargs)
             if not isinstance(result, str):
                 raise DecoratedFunctionError('Error: Wrapped function should return string value')
-            tag_name = name.lower()
-            result = rf'<{tag_name}>{result}</{tag_name}>'
+            result = rf'<{name.lower()}>{result}</{name.lower()}>'
             return result
         return wrapper
     return decorator
