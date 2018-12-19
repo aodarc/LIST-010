@@ -5,21 +5,15 @@ def find_most_frequent(text):
     sub_str = text.lower()
     translation_table = dict.fromkeys(map(ord, ",.:;!?-"), " ")
     sub_str2 = sub_str.translate(translation_table)
-
+    
     # creating a list of separate words and getting rid of spaces
     lst = [x for x in sub_str2.split(" ") if x!=""]
-    
-    # forming a list of most frequent words
-    final_lst = [i for i in lst if lst.count(i) >= (max(lst.count(i) for i in lst))]
 
-    # removing duplicates
-    final_lst = list(set(final_lst))
+    max_repeat = max(lst.count(i) for i in lst)
         
-    # printing the list (if there is more than one word, the list is sorted)
-    if len(final_lst) == 1:
-        print(final_lst)
-    else:
-        final_lst.sort()
-        print(final_lst)
+    # forming a list of most frequent words without duplicates
+    final_lst = list({i for i in lst if lst.count(i) >= max_repeat})
 
-find_most_frequent("Tom? WHO ARE YOU, TOm?! You are fool, I:am:Lord-wOldemOrt")
+    return sorted(final_lst)
+
+print(find_most_frequent("Tom? WHO ARE YOU, TOm?! You are fool, I:am:Lord-wOldemOrt"))
