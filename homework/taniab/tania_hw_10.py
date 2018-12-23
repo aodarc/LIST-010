@@ -41,14 +41,21 @@ class ImageDownloader:
         print(f'Successfully downloaded as {path}')
 
     def download_all(self):
+        failed_urls = []
         for url in self.urls_list:
             response = requests.get(url)
-            if self._validate_response(response) and self._validate_size(response) and self._validate_type(response):
+            if all((self._validate_response(response), self._validate_size(response), self._validate_type(response))):
                 self._save(response)
+            else:
+                failed_urls.append(url)
+
+        if failed_urls:
+            print(f'Failed to download:\n', '\n'.join(failed_urls))
 
 
-downloader = ImageDownloader(['https://www.google.com.ua/images/branding/googlelogo/2x/googlelogo_color_272x92dp.pngl',
-                              'https://i.ytimg.com/vi/YCaGYUIfdy4/maxresdefault.jpg',
-                              ], 110)
+downloader = ImageDownloader(['https://cs9.pikabu.ru/post_img/big/2018/08/21/6/1534844899115897608.jpg',
+                              'https://www.pbs.org/wgbh/nova/media/original_images/quantum-entanglement_2048x1152.jpg',
+                              'https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2018/04/space_rocks_live_cover/17465605-1-eng-GB/space_rocks_live_cover_large.jpg',
+                              ], 900)
 downloader.download_all()
 
