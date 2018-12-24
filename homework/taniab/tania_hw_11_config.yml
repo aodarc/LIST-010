@@ -1,0 +1,9 @@
+ext_mappings:
+  c:
+  - .c
+  - .h
+  py:
+  - .py
+  - .pyc
+  txt:
+  - .txt
