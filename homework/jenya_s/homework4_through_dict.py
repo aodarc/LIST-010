@@ -12,8 +12,10 @@ def find_most_frequent(text):
     # forming a dictionary with a word from 'lst' as a key
     # and the number of these words in 'lst' as a value
     count_dict = {z: lst.count(z) for z in lst}
-            
-    final_lst = [i for i in count_dict if count_dict[i] == max(count_dict.values())]
+
+    max_repeat = max(count_dict.values())
+    
+    final_lst = [i for i in count_dict if count_dict[i] == max_repeat]
             
     return sorted(final_lst)
 
