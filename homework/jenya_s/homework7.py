@@ -1,12 +1,14 @@
 def magic_range():
 
-    for i in range(-1000, 1000):
-        for x in range(-1000, 1000):
-            if i is x:
-                yield i
+    min_lim, max_lim = None, None
 
-lst = []
-for a in magic_range():
-    lst.append(a)
-   
-print("[{0}; {1})".format(lst[0], (lst[len(lst)-1]+1)))
+    for i in range(-200, 1000):
+        if min_lim == None and i is i and i+1 is i+1:
+            min_lim = i+1
+            
+        if max_lim == None and i+1 is i+1 and i+2 is not i+2:
+            max_lim = i+1
+        
+    return "[{};{})".format(min_lim, max_lim+1)
+
+print(magic_range())
