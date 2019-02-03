@@ -1,23 +1,23 @@
-"""
-Write a python program that takes a list of file extensions and prints all the files from the current directory matching the extension given.
+import os
+import yaml
+
+
+"""Write a python program that takes a list of file extensions and prints all the files from the current directory matching the extension given.
   The following extensions and meaning should be supported:
       c should find and print all .c and .h file names
       py should find and print all .py and .pyc file names
       pl should find and print all .pl and .pm file names
-Bonus: Read extension and meaning from a configuration file
-"""
-import os
-import yaml
+Bonus: Read extension and meaning from a configuration file"""
 
 
 def load_config():
     with open("tania_hw_11_config.yml", 'r') as conf:
         cfg = yaml.load(conf)
-    return cfg['ext_mappings']
+    return cfg
 
 
 def list_files(extension: list) -> list:
-    config = load_config()
+    config = load_config()['ext_mappings']
     config_exts = []
     for val in extension:
         config_exts.extend(config.get(val, ''))
