@@ -8,8 +8,8 @@ sequence = [{"value": 67},
 {"value": 100},
 {"value" : -100}]
 
-def bubble_sort(seq,key, reverse):
-    '''sort any sequence
+def bubble_sort(seq, key = lambda elem: elem, reverse = False):
+    """sort any sequence
 
     Keyword arguments:
     seq --  unsorted sequence
@@ -18,17 +18,17 @@ def bubble_sort(seq,key, reverse):
                if False sorted from max to min
 
     Returns: sorted sequence 
-    '''
+    """
     seq_lst = list(sequence)
-    skey = key if key is not None else lambda elem: elem
-    for i in range(len(seq_lst) - 1):
+    ln_seq = len(seq_lst) - 1
+    for i in range(ln_seq):
         for j in range(len(seq_lst)-i-1):
-            if skey(seq_lst[j])>skey(seq_lst[j+1]):
+            if key(seq_lst[j])>key(seq_lst[j+1]):
                 seq_lst[j], seq_lst[j+1] = seq_lst[j+1],seq_lst[j]
-    if reverse == False:
-        return seq_lst[::-1]
-    else:
+    if reverse:
         return seq_lst
+    else:
+        return seq_lst[::-1]
 
 
 print(bubble_sort(sequence, key = lambda elem:elem["value"], reverse = True))
