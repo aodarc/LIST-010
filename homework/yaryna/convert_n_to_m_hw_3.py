@@ -1,3 +1,5 @@
+import string
+
 def convert_to_10(converted_number):
     len_dict_converted_number = len(dict_converted_number)
     number_in_10=0
@@ -32,11 +34,7 @@ def convert_to_m(number_in_10):
 converted_number=input("Enter integer number: ")
 n=int(input("Enter first notation: "))
 m=int(input("Enter second notation: "))
-replace_value = {"A":10, "B":11,"C":12, "D":13,"E":14,"F":15, "G":16,
-                "H":17, "I":18, "J":19, "K":20, "L":21, "M":22, "N":23,
-                "O":24, "P":25, "Q":26, "R":27, "S":28, "T":29, "U":30,
-                "V":31, "W":32, "X":33, "Y":34, "Z":35
-                }
+replace_value = {s: i for i, s in enumerate(string.ascii_uppercase, start=10)}
 converted_number = converted_number.upper()
 lst_converted_number = list(converted_number)
 for element in lst_converted_number:
