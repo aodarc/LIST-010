@@ -8,16 +8,13 @@ urlList = ['http://www.mmf.lnu.edu.ua/media/k2/items/cache/537eafaab0a4c0a227d88
 			'http://www.mmf.lnu.edu.ua/images/stories/articles/181015m28.jpg',
 			'https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80']
 
-typeList = ['image/jpeg','image/png']
-
 class ImageDownloader:
 
 	DEFAULT_TYPES = ['image/jpeg','image/png','image/jpg', 'image/gif', 'image/psd']
 	DEFAULT_MAX_FILE_SIZE = 5242880
 
-	def __init__(self, urlList = [], typeList = DEFAULT_TYPES, size = DEFAULT_MAX_FILE_SIZE):
+	def __init__(self, urlList, size = DEFAULT_MAX_FILE_SIZE):
 		self.urlList = urlList
-		self.typeList = typeList
 		self.size = size
 
 	def sizeChecker(self, size):
@@ -28,7 +25,7 @@ class ImageDownloader:
 			return  False
 
 	def typeChecker(self, filetype):
-		return True if filetype in self.typeList else False
+		return filetype in self.DEFAULT_TYPES
 
 	def saveImage(self, url):
 		response = requests.get(url)
@@ -45,10 +42,10 @@ class ImageDownloader:
 		else:
 			print ("It's not image" )
 
-	def saveImages(self, urlList = []):
-		urlList = urlList or self.urlList
+	def saveImages(self, urlList = None):
+		urlList = urlList or self.urlList or []
 		for url in urlList:
 			self.saveImage(url)
 
-downloader1 = ImageDownloader(urlList, typeList)
+downloader1 = ImageDownloader(urlList)
 downloader1.saveImages()
